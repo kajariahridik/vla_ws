@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<robot name="panda">
+
+  <!-- ========== BASE LINK ========== -->
+  <link name="world"/>
+
+  <link name="panda_link0">
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0"
+               iyy="0.1" iyz="0"
+               izz="0.1"/>
+    </inertial>
+  </link>
+
+  <joint name="world_to_panda" type="fixed">
+    <parent link="world"/>
+    <child link="panda_link0"/>
+    <origin xyz="0 0 0.75" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ========== 7 DOF ARM (SIMPLIFIED LINKS) ========== -->
+
+  <!-- Joint 1 -->
+  <link name="panda_link1"/>
+  <joint name="panda_joint1" type="revolute">
+    <parent link="panda_link0"/>
+    <child link="panda_link1"/>
+    <origin xyz="0 0 0.333" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="87" velocity="2.175" lower="-2.8973" upper="2.8973"/>
+  </joint>
+
+  <!-- Joint 2 -->
+  <link name="panda_link2"/>
+  <joint name="panda_joint2" type="revolute">
+    <parent link="panda_link1"/>
+    <child link="panda_link2"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="87" velocity="2.175" lower="-1.7628" upper="1.7628"/>
+  </joint>
+
+  <!-- Joint 3 -->
+  <link name="panda_link3"/>
+  <joint name="panda_joint3" type="revolute">
+    <parent link="panda_link2"/>
+    <child link="panda_link3"/>
+    <origin xyz="0 0.316 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="87" velocity="2.175" lower="-2.8973" upper="2.8973"/>
+  </joint>
+
+  <!-- Joint 4 -->
+  <link name="panda_link4"/>
+  <joint name="panda_joint4" type="revolute">
+    <parent link="panda_link3"/>
+    <child link="panda_link4"/>
+    <origin xyz="0.0825 0 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="87" velocity="2.175" lower="-3.0718" upper="-0.0698"/>
+  </joint>
+
+  <!-- Joint 5 -->
+  <link name="panda_link5"/>
+  <joint name="panda_joint5" type="revolute">
+    <parent link="panda_link4"/>
+    <child link="panda_link5"/>
+    <origin xyz="-0.0825 0.384 0" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="12" velocity="2.61" lower="-2.8973" upper="2.8973"/>
+  </joint>
+
+  <!-- Joint 6 -->
+  <link name="panda_link6"/>
+  <joint name="panda_joint6" type="revolute">
+    <parent link="panda_link5"/>
+    <child link="panda_link6"/>
+    <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="12" velocity="2.61" lower="-0.0175" upper="3.7525"/>
+  </joint>
+
+  <!-- Joint 7 -->
+  <link name="panda_link7"/>
+  <joint name="panda_joint7" type="revolute">
+    <parent link="panda_link6"/>
+    <child link="panda_link7"/>
+    <origin xyz="0.088 0 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="12" velocity="2.61" lower="-2.8973" upper="2.8973"/>
+  </joint>
+
+  <!-- ========== END EFFECTOR ========== -->
+  <link name="panda_hand"/>
+  <joint name="panda_hand_joint" type="fixed">
+    <parent link="panda_link7"/>
+    <child link="panda_hand"/>
+    <origin xyz="0 0 0.107" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ========== ROS2 CONTROL ========== -->
+  <ros2_control name="GazeboSystem" type="system">
+
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+
+    <joint name="panda_joint1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="panda_joint2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="panda_joint3">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="panda_joint4">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="panda_joint5">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="panda_joint6">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="panda_joint7">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+  </ros2_control>
+
+  <!-- ========== GAZEBO PLUGIN ========== -->
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"/>
+  </gazebo>
+
+</robot>

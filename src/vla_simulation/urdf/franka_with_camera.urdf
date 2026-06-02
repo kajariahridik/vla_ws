@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<robot name="franka_with_camera">
+
+  <!-- ========== WORLD ========== -->
+  <link name="world"/>
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="panda_link0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ========== FRANKA LINKS ========== -->
+  <link name="panda_link0">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link0.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link0.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.629769"/>
+      <origin xyz="-0.041018 -0.00014 0.049974"/>
+      <inertia ixx="0.00315" ixy="8.29e-7" ixz="0.00015" iyy="0.00388" iyz="8.3e-6" izz="0.004285"/>
+    </inertial>
+  </link>
+
+  <link name="panda_link1">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link1.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="4.970684"/>
+      <origin xyz="0.003875 0.002081 -0.04762"/>
+      <inertia ixx="0.70337" ixy="-0.000139" ixz="0.006772" iyy="0.70661" iyz="0.019169" izz="0.009117"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint1" type="revolute">
+    <parent link="panda_link0"/>
+    <child link="panda_link1"/>
+    <origin xyz="0 0 0.333" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.8973" upper="2.8973" effort="87" velocity="2.1750"/>
+  </joint>
+
+  <link name="panda_link2">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link2.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.646926"/>
+      <origin xyz="-0.003141 -0.02872 0.003495"/>
+      <inertia ixx="0.00799" ixy="-3.925e-3" ixz="1.0254e-2" iyy="2.8927e-2" iyz="7.04e-4" izz="2.5995e-2"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint2" type="revolute">
+    <parent link="panda_link1"/>
+    <child link="panda_link2"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.7628" upper="1.7628" effort="87" velocity="2.1750"/>
+  </joint>
+
+  <link name="panda_link3">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link3.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link3.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="3.228604"/>
+      <origin xyz="2.7518e-2 3.9252e-2 -6.6502e-2"/>
+      <inertia ixx="3.7242e-2" ixy="-4.7610e-3" ixz="-1.1396e-2" iyy="3.6155e-2" iyz="-1.2805e-2" izz="1.083e-2"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint3" type="revolute">
+    <parent link="panda_link2"/>
+    <child link="panda_link3"/>
+    <origin xyz="0 -0.316 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.8973" upper="2.8973" effort="87" velocity="2.1750"/>
+  </joint>
+
+  <link name="panda_link4">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link4.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link4.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="3.587895"/>
+      <origin xyz="-5.317e-2 1.04419e-1 2.7454e-2"/>
+      <inertia ixx="2.5853e-2" ixy="7.796e-3" ixz="-1.332e-3" iyy="1.9552e-2" iyz="8.641e-3" izz="2.8323e-2"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint4" type="revolute">
+    <parent link="panda_link3"/>
+    <child link="panda_link4"/>
+    <origin xyz="0.0825 0 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.0718" upper="-0.0698" effort="87" velocity="2.1750"/>
+  </joint>
+
+  <link name="panda_link5">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link5.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link5.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.225946"/>
+      <origin xyz="-1.1953e-2 4.1065e-2 -3.8437e-2"/>
+      <inertia ixx="3.5549e-2" ixy="-2.117e-3" ixz="-4.037e-3" iyy="2.9474e-2" iyz="2.29e-4" izz="8.627e-3"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint5" type="revolute">
+    <parent link="panda_link4"/>
+    <child link="panda_link5"/>
+    <origin xyz="-0.0825 0.384 0" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.8973" upper="2.8973" effort="12" velocity="2.6100"/>
+  </joint>
+
+  <link name="panda_link6">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link6.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link6.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.666555"/>
+      <origin xyz="6.0149e-2 -1.4117e-2 -1.0517e-2"/>
+      <inertia ixx="1.9640e-3" ixy="1.09e-4" ixz="-1.158e-3" iyy="4.354e-3" iyz="3.41e-4" izz="5.433e-3"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint6" type="revolute">
+    <parent link="panda_link5"/>
+    <child link="panda_link6"/>
+    <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.0175" upper="3.7525" effort="12" velocity="2.6100"/>
+  </joint>
+
+  <link name="panda_link7">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/visual/link7.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_arms/fer/collision/link7.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="7.35522e-01"/>
+      <origin xyz="1.0517e-2 -4.252e-3 6.1597e-2"/>
+      <inertia ixx="1.2516e-2" ixy="-4.28e-4" ixz="-1.196e-3" iyy="1.0027e-2" iyz="-7.41e-4" izz="4.815e-3"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_joint7" type="revolute">
+    <parent link="panda_link6"/>
+    <child link="panda_link7"/>
+    <origin xyz="0.088 0 0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.8973" upper="2.8973" effort="12" velocity="2.6100"/>
+  </joint>
+
+  <link name="panda_link8"/>
+  <joint name="panda_joint8" type="fixed">
+    <parent link="panda_link7"/>
+    <child link="panda_link8"/>
+    <origin xyz="0 0 0.107" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ========== HAND ========== -->
+  <link name="panda_hand">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_ee/franka_hand/visual/hand.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/robot_ee/franka_hand/collision/hand.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.73"/>
+      <origin xyz="0 0 0.035"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.0025" iyz="0" izz="0.0017"/>
+    </inertial>
+  </link>
+
+  <joint name="panda_hand_joint" type="fixed">
+    <parent link="panda_link8"/>
+    <child link="panda_hand"/>
+    <origin xyz="0 0 0" rpy="0 0 -0.7854"/>
+  </joint>
+
+  <!-- ========== GAZEBO ros2_control plugin ========== -->
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
+      <parameters>$(find vla_simulation)/config/ros2_control.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <!-- ros2_control hardware interface -->
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="panda_joint1">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="panda_joint2">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">-0.785</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="panda_joint3">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="panda_joint4">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">-2.356</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="panda_joint5">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="panda_joint6">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">1.571</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="panda_joint7">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.785</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <!-- ========== CAMERA ========== -->
+  <link name="camera_mount">
+    <visual>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+      <material name="black"><color rgba="0.1 0.1 0.1 1"/></material>
+    </visual>
+    <collision>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_mount_joint" type="fixed">
+    <parent link="world"/>
+    <child link="camera_mount"/>
+    <origin xyz="0.5 0.0 1.2" rpy="0 1.5708 0"/>
+  </joint>
+
+  <link name="camera_link"/>
+  <joint name="camera_joint" type="fixed">
+    <parent link="camera_mount"/>
+    <child link="camera_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="camera_link">
+    <sensor type="depth" name="rgbd_camera">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <camera>
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>5.0</far>
+        </clip>
+      </camera>
+      <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
+        <ros>
+          <remapping>~/image_raw:=/camera/image_raw</remapping>
+          <remapping>~/camera_info:=/camera/camera_info</remapping>
+          <remapping>~/depth/image_raw:=/camera/depth/image_raw</remapping>
+        </ros>
+        <camera_name>camera</camera_name>
+        <frame_name>camera_link</frame_name>
+        <min_depth>0.1</min_depth>
+        <max_depth>5.0</max_depth>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
